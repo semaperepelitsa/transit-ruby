@@ -12,11 +12,7 @@ library provides support for marshalling Transit data to/from Ruby.
 This implementation's major.minor version number corresponds to the
 version of the Transit specification it supports.
 
-_NOTE: Transit is a work in progress and may evolve based on feedback.
-As a result, while Transit is a great option for transferring data
-between applications, it should not yet be used for storing data
-durably over time. This recommendation will change when the
-specification is complete._
+_NOTE: Transit is intended primarily as a wire protocol for transferring data between applications. If storing Transit data durably, readers and writers are expected to use the same version of Transit and you are responsible for migrating/transforming/re-storing that data when and if the transit format changes._
 
 ## Contributing
 
@@ -37,7 +33,7 @@ gem install transit-ruby
 ```ruby
 # io can be any Ruby IO
 
-writer = Transit::Writer.new(:json, io) # or :json-verbose, :msgpack
+writer = Transit::Writer.new(:json, io) # or :json_verbose, :msgpack
 writer.write(value)
 
 reader = Transit::Reader.new(:json, io) # or :msgpack
@@ -130,7 +126,7 @@ for more info.
 |decimal|Float|Float|123.456|123.456|
 |keyword|Symbol|Symbol|:abc|:abc|
 |symbol|Transit::Symbol|Transit::Symbol|Transit::Symbol.new("foo")|`#<Transit::Symbol "foo">`|
-|big decimal|BigDecimal|BigDecimal|BigDecimal.new("2**64")|`#<BigDecimal:7f9e6d33c558>`|
+|big decimal|BigDecimal|BigDecimal|BigDecimal("2**64")|`#<BigDecimal:7f9e6d33c558>`|
 |big integer|Integer|Integer|2**128|340282366920938463463374607431768211456|
 |time|DateTime, Date, Time|DateTime|DateTime.now|`#<DateTime: 2014-07-15T15:52:27+00:00 ((2456854j,57147s,23000000n),+0s,2299161j)>`|
 |uri|Addressable::URI, URI|Addressable::URI|Addressable::URI.parse("http://example.com")|`#<Addressable::URI:0x3fc0e20390d4 URI:http://example.com>`|
@@ -151,7 +147,7 @@ for more info.
 
 ## Tested Ruby Versions
 
-* MRI 2.1.10, 2.2.7, 2.3.4, 2.4.0, 2.4.1
+* MRI 2.1.10, 2.2.7, 2.3.4, 2.4.0, 2.4.1, 2.6.0..3
 * JRuby 1.7.13..16
 
 ## Copyright and License
