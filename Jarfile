@@ -1,6 +1,6 @@
 # -*- ruby -*-
 
-jruby_version=File.read("build/jruby_version").chomp
+jruby_version=File.read("#{__dir__}/build/jruby_version").chomp
 
 # dependency to transit-java
 # this setup uses maven central for the repository
