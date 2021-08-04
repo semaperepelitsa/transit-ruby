@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   if defined?(RUBY_ENGINE) && RUBY_ENGINE == "jruby"
     spec.files    = files - cruby_files
     spec.platform = 'java'
-    spec.add_dependency "lock_jar",                   "~> 0.12.0"
+    spec.add_dependency "lock_jar",                   "~> 0.12"
     spec.add_development_dependency "rake-compiler",  "~> 0.9.2"
     private_key_path = nil # not yet supported
     public_key_path = nil  # not yet supported
